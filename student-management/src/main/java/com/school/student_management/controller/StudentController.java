@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -47,20 +46,7 @@ public class StudentController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Student>> searchStudents(
-            @RequestParam String keyword) {
+    public ResponseEntity<List<Student>> searchStudents(@RequestParam String keyword) {
         return ResponseEntity.ok(studentService.searchStudents(keyword));
-    }
-
-    @GetMapping("/department/{department}")
-    public ResponseEntity<List<Student>> getByDepartment(
-            @PathVariable String department) {
-        return ResponseEntity.ok(studentService.getStudentsByDepartment(department));
-    }
-
-    @GetMapping("/level/{level}")
-    public ResponseEntity<List<Student>> getByLevel(
-            @PathVariable String level) {
-        return ResponseEntity.ok(studentService.getStudentsByLevel(level));
     }
 }

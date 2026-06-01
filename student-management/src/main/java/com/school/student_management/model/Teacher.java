@@ -4,16 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import java.util.List;
-import java.util.ArrayList;
 
 @Entity
-@Table(name = "students")
+@Table(name = "teachers")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student {
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,15 +23,14 @@ public class Student {
     private String email;
 
     @Column(nullable = false, unique = true)
-    private String rollNumber;
+    private String employeeId;
 
     @Column(nullable = false)
-    private Double cgpa;
+    private String subject;
 
     @Column
-    private String parentEmail;
+    private String phone;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<Course> courses = new ArrayList<>();
+    @Column(nullable = false)
+    private String status; // Active or Inactive
 }
